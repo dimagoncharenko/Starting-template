@@ -1,26 +1,44 @@
 @font-face {
-	font-family: "Open Sans";
-	src: url("../fonts/opensans.woff2") format("woff2"),
-	url("../fonts/opensans.woff") format("woff");
-	font-display: swap;
-	font-style: normal;
-	font-weight: 400;
-}
-
-@font-face {
-	font-family: "Open Sans";
-	src: url("../fonts/opensansbold.woff2") format("woff2"),
-	url("../fonts/opensansbold.woff") format("woff");
+	font-family: "Bebas";
+	src: url("../fonts/bebas-bold.woff2") format("woff2"),
+	url("../fonts/bebas-bold.woff") format("woff");
 	font-display: swap;
 	font-style: normal;
 	font-weight: 700;
 }
 
 @font-face {
-	font-family: "Open Sans";
-	src: url("../fonts/opensanslight.woff2") format("woff2"),
-	url("../fonts/opensanslight.woff") format("woff");
+	font-family: "Bebas";
+	src: url("../fonts/bebas-regularn.woff2") format("woff2"),
+	url("../fonts/bebas-regular.woff") format("woff");
+	font-display: swap;
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: "Helvetica Neue";
+	src: url("../fonts/helveticaneue-light.woff2") format("woff2"),
+	url("../fonts/helveticaneue-light.woff") format("woff");
 	font-display: swap;
 	font-style: normal;
 	font-weight: 300;
+}
+
+@font-face {
+	font-family: "Helvetica Neue";
+	src: url("../fonts/helveticaneue-bold.woff2") format("woff2"),
+	url("../fonts/helveticaneue-bold.woff") format("woff");
+	font-display: swap;
+	font-style: normal;
+	font-weight: 700;
+}
+
+@font-face {
+	font-family: "Helvetica Neue";
+	src: url("../fonts/helveticaneue-black.woff2") format("woff2"),
+	url("../fonts/helveticaneue-black.woff") format("woff");
+	font-display: swap;
+	font-style: normal;
+	font-weight: 800;
 }

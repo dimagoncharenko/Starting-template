@@ -13,10 +13,13 @@ var server       = require('browser-sync').create();
 var rename       = require('gulp-rename');
 var run          = require('run-sequence');
 var del          = require('del');
+var sourcemaps   = require('gulp-sourcemaps');
+var svgstore		 = require('gulp-svgstore');
 
 gulp.task('style', function () {
 	gulp.src('source/sass/style.scss')
 	.pipe(plumber())
+	.pipe(sourcemaps.init())
 	.pipe(sass({
 		includePaths: require('node-normalize-scss').includePaths
 	}))
@@ -26,17 +29,9 @@ gulp.task('style', function () {
 	.pipe(gulp.dest('source/css'))
 	.pipe(minify())
 	.pipe(rename('style.min.css'))
+	.pipe(sourcemaps.write())
 	.pipe(gulp.dest('source/css'))
 	.pipe(server.stream());
-});
-
-gulp.task('cssLibs', function () {
-	return gulp.src([
-		'source/libs/slick-carousel/slick/slick.css'
-	])
-	.pipe(concatCss('libs.css'))
-	.pipe(minify())
-	.pipe(gulp.dest('source/css'));
 });
 
 
@@ -44,7 +39,6 @@ gulp.task('cssLibs', function () {
 
 gulp.task('styleProd', function () {
 	gulp.src('source/sass/style.scss')
-	.pipe(plumber())
 	.pipe(postcss([
 		autoprefixer()
 	]))
@@ -58,24 +52,11 @@ gulp.task('styleProd', function () {
 });
 
 
-// Скидываю все Js библиотеки в один файл
-
-gulp.task('jsLibs', function () {
-	return gulp.src([
-		'source/libs/jquery/dist/jquery.min.js',
-		'source/libs/picturefill/dist/picturefill.min.js',
-		'source/libs/svg4everybody/dist/svg4everybody.min.js',
-		'source/libs/slick-carousel/slick/slick.min.js'
-	])
-	.pipe(concat('libs.js'))
-	.pipe(gulp.dest('source/js'));
-});
-
-
 // Минифицирую js
 
 gulp.task('js', function () {
 	return gulp.src('source/js/script.js')
+	.pipe(plumber())
 	.pipe(uglify())
 	.pipe(rename({
 		suffix: '.min'
@@ -85,7 +66,7 @@ gulp.task('js', function () {
 });
 
 
-gulp.task('serve', ['style', 'jsLibs', 'cssLibs', 'js'], function () {
+gulp.task('serve', ['style', 'js'], function () {
 	server.init({
 		server: 'source/',
 		notify: false,
@@ -105,7 +86,6 @@ gulp.task('copy', function () {
 		'source/fonts/**/*.{woff,woff2}',
 		'source/img/**',
 		'source/js/**',
-		'source/css/libs.css',
 		'source/*.html',
 		'source/libs/**'
 	], {
@@ -124,8 +104,6 @@ gulp.task('build', function (done) {
 	run(
 		'clean',
 		'js',
-		'jsLibs',
-		'cssLibs',
 		'copy',
 		'styleProd',
 		done
@@ -167,4 +145,13 @@ gulp.task('webp', function () {
 	return gulp.src('source/img/content/**/*.{png,jpg}')
 	.pipe(webp({quality: 90}))
 	.pipe(gulp.dest('source/img/content'));
+});
+
+gulp.task('sprite', function () {
+	return gulp.src('source/img/icons/icon-*.svg')
+	.pipe(svgstore({
+		inlineSVG: true
+	}))
+	.pipe(rename('sprite.svg'))
+	.pipe(gulp.dest('source/img/icons'));
 });
