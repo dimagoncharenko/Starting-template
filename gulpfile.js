@@ -39,12 +39,12 @@ gulp.task('style', function () {
 
 gulp.task('styleProd', function () {
 	gulp.src('source/sass/style.scss')
-	.pipe(postcss([
-		autoprefixer()
-	]))
 	.pipe(sass({
 		includePaths: require('node-normalize-scss').includePaths
 	}))
+	.pipe(postcss([
+		autoprefixer()
+	]))
 	.pipe(gulp.dest('build/css'))
 	.pipe(minify())
 	.pipe(rename('style.min.css'))
