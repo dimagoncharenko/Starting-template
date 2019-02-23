@@ -1,0 +1,59 @@
+.nav {
+	background: #2A2A2A;
+
+	&__inner {
+		@media (max-width: $tablet-large) {
+			position: fixed;
+			top: 0;
+			right: -100%;
+			width: 50%;
+			height: 100%;
+			padding: 50px 20px 30px;
+			background: #3B3B3B;
+			box-shadow: 0 0 10px rgba(#3B3B3B, 1);
+			overflow-y: auto;
+			transition: 0.3s ease;
+		}
+		@media (max-width: $mobile-large) {
+			width: 100%;
+		}
+	}
+
+	&__list {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin: 0;
+		padding: 5px 0;
+		list-style: none;
+		@media (max-width: $tablet-large) {
+			flex-direction: column;
+		}
+
+		a {
+			position: relative;
+			display: inline-block;
+			padding: 12px 20px;
+			font-size: 16px;
+			line-height: 1;
+			color: #bbbbbb;
+			transition: 0.3s ease;
+			@media (max-width: $desktop-small) {
+				padding: 12px 5px;
+			}
+			&:hover {
+				color: #fff;
+			}
+		}
+	}
+}
+
+.nav-on {
+	overflow: hidden;
+	position: relative;
+	height: 100%;;
+}
+
+.nav--open .nav__inner {
+	right: 0;
+}
