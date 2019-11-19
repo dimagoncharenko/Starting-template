@@ -41,9 +41,10 @@
     "Firefox ESR"
   ],
   "dependencies": {
-    "swiper": "^4.5.0",
+    "@babel/polyfill": "^7.6.0",
     "jquery": "^3.4.1",
     "node-normalize-scss": "^8.0.1",
-    "picturefill": "^3.0.3"
+    "picturefill": "^3.0.3",
+    "swiper": "^4.5.0"
   }
 }
