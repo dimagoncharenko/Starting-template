@@ -45,6 +45,6 @@
     "jquery": "^3.4.1",
     "node-normalize-scss": "^8.0.1",
     "picturefill": "^3.0.3",
-    "swiper": "^4.5.0"
+    "swiper": "^6.5.1"
   }
 }
